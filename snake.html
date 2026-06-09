@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -361,6 +361,99 @@
     .score-label { font-size: 9px; }
     .speed-panel { padding: 8px 12px 10px; }
   }
+  @media (max-width: 380px) {
+    .header { gap: 8px; }
+    .score-panel { padding: 6px 10px; min-width: 70px; }
+    .score-value, .best-value, .level-value { font-size: 22px; }
+    .score-label { font-size: 9px; }
+    .speed-panel { padding: 8px 12px 10px; }
+  }
+
+  /* ── Enhanced Overlay Styles ────────────────────── */
+  .overlay { background: rgba(5,5,15,0.82); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+  .overlay-card {
+    background: linear-gradient(145deg, #161625, #1a1a2e);
+    border: 1px solid rgba(124,58,237,0.25); border-radius: 20px;
+    padding: 36px 48px 32px; text-align: center; max-width: 92vw;
+    position: relative; overflow: hidden;
+    box-shadow: 0 0 60px rgba(74,222,128,0.06), 0 0 120px rgba(124,58,237,0.04);
+    animation: cardAppear 0.5s ease-out;
+  }
+  .overlay-card::before {
+    content: "";
+    position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(74,222,128,0.03) 90deg, transparent 180deg, rgba(124,58,237,0.03) 270deg, transparent 360deg);
+    animation: cardRotate 10s linear infinite; pointer-events: none; z-index: 0;
+  }
+  .overlay-card > * { position: relative; z-index: 1; }
+  @keyframes cardRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes cardAppear { from { opacity: 0; transform: translateY(20px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  .overlay-logo { position: relative; display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 8px; padding-top: 8px; }
+  .logo-icon { font-size: 42px; line-height: 1; animation: logoBounce 2s ease-in-out infinite; filter: drop-shadow(0 0 12px rgba(74,222,128,0.4)); }
+  @keyframes logoBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  .logo-ring { position: absolute; width: 80px; height: 80px; border: 2px solid rgba(74,222,128,0.12); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: ringPulse 2.5s ease-in-out infinite; }
+  @keyframes ringPulse { 0%, 100% { width: 80px; height: 80px; opacity: 0.5; border-color: rgba(74,222,128,0.12); } 50% { width: 96px; height: 96px; opacity: 0.2; border-color: rgba(74,222,128,0.05); } }
+  .overlay-title { color: #fff; font-size: 36px; font-weight: 800; letter-spacing: 4px; background: linear-gradient(135deg, #4ade80 0%, #38bdf8 50%, #c084fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 20px rgba(74,222,128,0.3)); }
+  .overlay-title.title-gameover { background: linear-gradient(135deg, #ef4444 0%, #f97316 50%, #facc15 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 20px rgba(239,68,68,0.3)); }
+  .title-glow { position: absolute; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle, rgba(74,222,128,0.08) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+  .overlay-sub { color: #94a3b8; font-size: 13px; margin-bottom: 20px; letter-spacing: 2px; animation: subFadeIn 0.6s ease-out 0.15s both; }
+  @keyframes subFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .start-extras { animation: extrasFadeIn 0.6s ease-out 0.3s both; }
+  @keyframes extrasFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .start-best { display: flex; align-items: center; justify-content: center; gap: 8px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.15); border-radius: 30px; padding: 6px 18px; margin: 0 auto 16px; width: fit-content; transition: border-color 0.3s; }
+  .start-best:hover { border-color: rgba(245,158,11,0.35); }
+  .best-label { font-size: 12px; color: #f59e0b; letter-spacing: 1px; }
+  .best-num { font-size: 22px; font-weight: 800; color: #fbbf24; font-variant-numeric: tabular-nums; text-shadow: 0 0 10px rgba(251,191,36,0.3); }
+  .showcase-divider { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 12px; }
+  .showcase-divider span { font-size: 11px; color: #64748b; letter-spacing: 2px; }
+  .showcase-divider::before, .showcase-divider::after { content: ""; flex: 1; max-width: 40px; height: 1px; background: linear-gradient(90deg, transparent, rgba(100,116,139,0.3)); }
+  .showcase-divider::after { background: linear-gradient(90deg, rgba(100,116,139,0.3), transparent); }
+  .power-showcase { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .showcase-item { display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 8px 14px; min-width: 64px; transition: all 0.25s ease; cursor: default; }
+  .showcase-item:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); transform: translateY(-2px); }
+  .showcase-item[data-power="lightning"]:hover { border-color: #facc15; box-shadow: 0 0 12px rgba(250,204,21,0.15); }
+  .showcase-item[data-power="ghost"]:hover { border-color: #818cf8; box-shadow: 0 0 12px rgba(129,140,248,0.15); }
+  .showcase-item[data-power="diamond"]:hover { border-color: #38bdf8; box-shadow: 0 0 12px rgba(56,189,248,0.15); }
+  .showcase-item[data-power="tornado"]:hover { border-color: #a3e635; box-shadow: 0 0 12px rgba(163,230,53,0.15); }
+  .showcase-icon { font-size: 22px; line-height: 1; }
+  .showcase-name { font-size: 10px; color: #94a3b8; font-weight: 600; letter-spacing: 1px; }
+  .showcase-item[data-power="lightning"] .showcase-icon { filter: drop-shadow(0 0 6px rgba(250,204,21,0.5)); }
+  .showcase-item[data-power="ghost"] .showcase-icon { filter: drop-shadow(0 0 6px rgba(129,140,248,0.5)); }
+  .showcase-item[data-power="diamond"] .showcase-icon { filter: drop-shadow(0 0 6px rgba(56,189,248,0.5)); }
+  .showcase-item[data-power="tornado"] .showcase-icon { filter: drop-shadow(0 0 6px rgba(163,230,53,0.5)); }
+  .start-btn-pulse { position: relative; background: linear-gradient(135deg, #4ade80, #22c55e); color: #0a0a0f; border: none; border-radius: 12px; padding: 14px 40px; font-size: 17px; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 0 20px rgba(74,222,128,0.2), inset 0 1px 0 rgba(255,255,255,0.3); overflow: hidden; }
+  .start-btn-pulse::before { content: ""; position: absolute; inset: -2px; border-radius: 14px; background: linear-gradient(135deg, #4ade80, #38bdf8, #c084fc, #4ade80); background-size: 300% 300%; z-index: -1; animation: btnBorderGlow 3s ease-in-out infinite; opacity: 0; transition: opacity 0.3s ease; }
+  .start-btn-pulse:hover::before { opacity: 1; }
+  .start-btn-pulse:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(74,222,128,0.35), inset 0 1px 0 rgba(255,255,255,0.3); }
+  .start-btn-pulse:active { transform: translateY(0); box-shadow: 0 0 15px rgba(74,222,128,0.2); }
+  .start-btn-pulse span { position: relative; z-index: 1; }
+  @keyframes btnBorderGlow { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  .countdown-number { font-size: 80px; font-weight: 900; line-height: 1; background: linear-gradient(135deg, #fff 0%, #4ade80 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 40px rgba(74,222,128,0.3)); animation: countPop 0.5s ease-out; }
+  .overlay-score { font-size: 56px; font-weight: 900; margin-bottom: 20px; background: linear-gradient(135deg, #4ade80 0%, #38bdf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 30px rgba(74,222,128,0.3)); animation: scorePulse 1.5s ease-in-out infinite; }
+  @keyframes scorePulse { 0%, 100% { filter: drop-shadow(0 0 20px rgba(74,222,128,0.3)); } 50% { filter: drop-shadow(0 0 40px rgba(74,222,128,0.5)); } }
+  .speed-note { color: #64748b; font-size: 11px; margin-top: 10px; letter-spacing: 0.5px; animation: subFadeIn 0.6s ease-out 0.45s both; }
+  .overlay-hint { margin-top: 14px; color: #475569; font-size: 11px; letter-spacing: 1px; animation: subFadeIn 0.6s ease-out 0.5s both; }
+  @media (max-width: 600px) {
+    .overlay-card { padding: 28px 24px 24px; }
+    .overlay-title { font-size: 28px; letter-spacing: 3px; }
+    .logo-icon { font-size: 34px; }
+    .logo-ring { width: 64px; height: 64px; }
+    .start-btn-pulse { padding: 12px 32px; font-size: 15px; }
+    .overlay-score { font-size: 42px; }
+    .power-showcase { gap: 6px; }
+    .showcase-item { padding: 6px 10px; min-width: 52px; }
+    .showcase-icon { font-size: 18px; }
+    .showcase-name { font-size: 9px; }
+    .countdown-number { font-size: 60px; }
+  }
+  @media (max-width: 380px) {
+    .overlay-card { padding: 20px 16px; }
+    .overlay-title { font-size: 24px; letter-spacing: 2px; }
+    .logo-icon { font-size: 28px; }
+    .showcase-item { min-width: 44px; padding: 4px 8px; }
+    .start-btn-pulse { padding: 10px 24px; font-size: 14px; }
+    .overlay-score { font-size: 34px; }
+  }
 </style>
 </head>
 <body>
@@ -419,17 +512,45 @@
   <div class="overlay-card">
     <div id="countdownArea"></div>
     <div id="messageArea">
-      <div class="overlay-title" id="overlayTitle">贪吃蛇</div>
+      <div class="overlay-logo">
+        <div class="logo-ring"></div>
+        <div class="logo-icon">🐍</div>
+        <div class="overlay-title" id="overlayTitle">贪吃蛇</div>
+        <div class="title-glow"></div>
+      </div>
       <div class="overlay-sub" id="overlaySub">按方向键或滑动屏幕开始</div>
       <div class="overlay-score" id="overlayScore" style="display:none">0</div>
-      <button class="btn" id="startBtn">开始游戏</button>
-      <div class="speed-note">可以在上方拖动滑条调节运行速度，数值越小越快。</div>
+      <div id="startExtras" class="start-extras">
+        <div class="start-best" id="startBest">
+          <span class="best-label">🏆 历史最佳</span>
+          <span class="best-num" id="startBestValue">0</span>
+        </div>
+        <div class="showcase-divider"><span>✦ 能力介绍 ✦</span></div>
+        <div class="power-showcase" id="powerShowcase">
+          <div class="showcase-item" data-power="lightning">
+            <span class="showcase-icon">⚡</span>
+            <span class="showcase-name">闪电</span>
+          </div>
+          <div class="showcase-item" data-power="ghost">
+            <span class="showcase-icon">👻</span>
+            <span class="showcase-name">幽灵</span>
+          </div>
+          <div class="showcase-item" data-power="diamond">
+            <span class="showcase-icon">💎</span>
+            <span class="showcase-name">钻石</span>
+          </div>
+          <div class="showcase-item" data-power="tornado">
+            <span class="showcase-icon">🌪</span>
+            <span class="showcase-name">龙卷风</span>
+          </div>
+        </div>
+      </div>
+      <button class="btn start-btn-pulse" id="startBtn"><span>开始游戏</span></button>
+      <div class="speed-note">↑ 拖动上方滑条调节速度 · 空格键暂停</div>
     </div>
     <div class="overlay-hint" id="overlayHint">空格键暂停 · 幽灵穿墙 · 闪电加速 · 钻石三倍分 · 龙卷风吸引水果</div>
   </div>
-</div>
-
-<script>
+</div><script>
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 const scoreEl = document.getElementById("score");
@@ -445,6 +566,8 @@ const overlayTitle = document.getElementById("overlayTitle");
 const overlaySub = document.getElementById("overlaySub");
 const overlayScore = document.getElementById("overlayScore");
 const overlayHint = document.getElementById("overlayHint");
+const startExtras = document.getElementById("startExtras");
+const startBestValue = document.getElementById("startBestValue");
 const startBtn = document.getElementById("startBtn");
 const pauseOverlay = document.getElementById("pauseOverlay");
 
@@ -615,6 +738,9 @@ function init() {
   levelPanel.style.display = "none";
   canvas.classList.remove("wall-danger", "wall-warn");
   placeFoods();
+  startExtras.style.display = "block";
+  overlayTitle.classList.remove("title-gameover");
+  startBestValue.textContent = best;
   trySpawnPower();
   stars = []
   for (var i = 0; i < 60; i++) {
@@ -1567,6 +1693,8 @@ function gameOver() {
   countdownArea.innerHTML = "";
   overlayTitle.textContent = "游戏结束";
   overlaySub.textContent = "最终得分";
+  overlayTitle.classList.add("title-gameover");
+  startExtras.style.display = "none";
   messageArea.style.display = "block";
   overlayScore.style.display = "block";
   overlayScore.textContent = score;
